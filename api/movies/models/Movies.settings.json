@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "movies",
+  "info": {
+    "name": "movies",
+    "description": "an api about movies books"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "release_date": {
+      "type": "date"
+    },
+    "imdb_link": {
+      "type": "string"
+    },
+    "imdb_score": {
+      "type": "decimal"
+    }
+  }
+}

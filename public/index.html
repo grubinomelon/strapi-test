@@ -1,0 +1,69 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Welcome to your Strapi app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body lang="en">
+    <table id="table" class="mdl-data-table dataTable" style="width: 90%; margin: 0 auto;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Release Date</th>
+                <th>IMDB Link</th>
+                <th>IMDB Score</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Release Date</th>
+                <th>IMDB Link</th>
+                <th>IMDB Score</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.material.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var movies;
+
+      axios.get('/movies')
+      .then(function (response) {
+        console.log(response.data);
+        movies = response.data;
+        $('#table').DataTable( {
+        "data": movies,
+        "columns": [
+            { "data": "name" },
+            { "data": "release_date" },
+            { "data": "imdb_link", "name": "imdb_link",
+                fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                    if(oData.imdb_link) {
+                        $(nTd).html("<a href='"+oData.imdb_link+"' target='_blank'>"+oData.imdb_link+"</a>");
+                    }
+                }
+            },
+            { "data": "imdb_score" }
+        ]
+        } );
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+      } );
+    </script>
+  </body>
+</html>

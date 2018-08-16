@@ -1,0 +1,18 @@
+{
+  "movies": {
+    "attributes": {
+      "Name": {
+        "appearance": ""
+      },
+      "Release Date": {
+        "appearance": ""
+      },
+      "IMDB Link": {
+        "appearance": ""
+      },
+      "IMDB Score": {
+        "appearance": ""
+      }
+    }
+  }
+}
